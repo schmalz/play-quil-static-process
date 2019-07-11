@@ -1,6 +1,15 @@
-(ns play-quil-static-process.core)
+(ns play-quil-static-process.core
+  (:require [quil.core :as q]
+            [play-quil-static-process.dynamic :as d])
+  (:gen-class))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(q/defsketch example
+  :title "sketch"
+  :setup d/setup
+  :draw d/draw
+  :size [900 900])
+
+(defn refresh
+  []
+  (use :reload 'play-quil-static-process.dynamic)
+  (.loop example))
