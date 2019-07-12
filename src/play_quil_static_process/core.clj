@@ -9,7 +9,6 @@
   :draw d/draw
   :size [900 900])
 
-(defn refresh
-  []
+(defn refresh []
   (use :reload 'play-quil-static-process.dynamic)
   (.loop example))
