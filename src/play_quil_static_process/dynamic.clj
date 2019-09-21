@@ -2,6 +2,12 @@
   (:require [clojure.pprint :as pp]
             [quil.core :as q]))
 
+(def ^:private colour [337 97 60.4])
+
+(def ^:private alphas [0.25 0.3 0.35])
+
+(def ^:private offsets [200 150 100])
+
 (defn- save-file-name
   []
   (pp/cl-format nil
@@ -16,13 +22,13 @@
   "Paint a triangle."
   [x y alpha offset]
   ;(q/fill 356 98.3 46.1 alpha)
-  (q/fill 337 97 60.4 alpha)
+  (apply q/fill (conj colour alpha))
   (q/triangle (- x offset) y x y x (+ y offset)))
 
 (defn- paint-triangle-set
   "Paint a congruent set of three triangles."
   [x y]
-  (dorun (map #(paint-triangle x y %1 %2) [0.25 0.35 0.45] [200 150 100])))
+  (dorun (map #(paint-triangle x y %1 %2) alphas offsets)))
 
 (defn draw
   []

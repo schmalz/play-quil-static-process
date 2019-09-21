@@ -11,4 +11,4 @@
 
 (defn refresh []
   (use :reload 'play-quil-static-process.dynamic)
-  (.loop example))
+  (.loop example)) ; Force a redraw.
