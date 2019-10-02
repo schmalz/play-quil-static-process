@@ -7,7 +7,7 @@
   :title "sketch"
   :setup d/setup
   :draw d/draw
-  :size [900 900])
+  :size [1800 1800])
 
 (defn refresh []
   (use :reload 'play-quil-static-process.dynamic)

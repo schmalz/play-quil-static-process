@@ -33,7 +33,8 @@
   [x1 y1 x2 y2]
   (q/stroke-weight 10)
   (let [t (q/random 1)]
-    (q/point (+ x1 (* t (- x2 x1))) (+ y1 (* t (- y2 y1))))))
+    (q/point (+ x1 (* t (- x2 x1)))
+             (+ y1 (* t (- y2 y1))))))
 
 (defn- paint-line
   "Paint a line."
@@ -48,13 +49,17 @@
   "Paint a triangle."
   [x y alpha x-offset y-offset]
   (apply q/fill (conj green alpha))
-  ; TODO use the golden ratio for the two sides
-  (q/triangle (- x x-offset) y x y x (+ y y-offset)))
+  (q/triangle (- x x-offset) y
+              x y
+              x (+ y y-offset)))
 
 (defn- paint-triangle-set
   "Paint a congruent set of three triangles."
   [x y]
-  (dorun (map #(paint-triangle x y %1 %2 %3) alphas x-offsets y-offsets)))
+  (dorun (map #(paint-triangle x y %1 %2 %3)
+              alphas
+              x-offsets
+              y-offsets)))
 
 (defn draw
   []
@@ -64,7 +69,7 @@
   (dotimes [_ 11]
     (paint-triangle-set (q/random (q/width))
                         (q/random (q/height))))
-  (dotimes [_ 5]
+  (dotimes [_ 9]
     (paint-line (q/random (q/width))
                 (q/random (q/height))
                 (q/random (q/width))
